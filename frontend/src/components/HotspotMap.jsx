@@ -99,13 +99,23 @@ const HotspotMap = ({ hotspots = [], events = [] }) => {
               className="pulsating-marker"
             >
               <Popup>
-                <div className="hotspot-popup">
-                  <h4>{hotspot.city}, {hotspot.state}</h4>
-                  <p><strong>Cases:</strong> {hotspot.totalIntensity.toLocaleString()}</p>
-                  <p><strong>Severity:</strong> <span className={`severity-badge ${hotspot.severity}`}>{hotspot.severity}</span></p>
-                  <p><strong>Types:</strong> {hotspot.types.join(', ')}</p>
+                <div className="hotspot-popup" style={{ color: '#000000', backgroundColor: 'white' }}>
+                  <h4 style={{ color: '#000000', margin: '0 0 8px 0', fontSize: '1.1rem', fontWeight: '600' }}>
+                    {hotspot.city}, {hotspot.state}
+                  </h4>
+                  <p style={{ color: '#000000', margin: '4px 0', fontSize: '0.9rem' }}>
+                    <strong style={{ color: '#000000', fontWeight: '600' }}>Cases:</strong> {hotspot.totalIntensity.toLocaleString()}
+                  </p>
+                  <p style={{ color: '#000000', margin: '4px 0', fontSize: '0.9rem' }}>
+                    <strong style={{ color: '#000000', fontWeight: '600' }}>Severity:</strong> <span className={`severity-badge ${hotspot.severity}`}>{hotspot.severity}</span>
+                  </p>
+                  <p style={{ color: '#000000', margin: '4px 0', fontSize: '0.9rem' }}>
+                    <strong style={{ color: '#000000', fontWeight: '600' }}>Types:</strong> {hotspot.types.join(', ')}
+                  </p>
                   {hotspot.count > 1 && (
-                    <p><strong>Multiple incidents:</strong> {hotspot.count}</p>
+                    <p style={{ color: '#000000', margin: '4px 0', fontSize: '0.9rem' }}>
+                      <strong style={{ color: '#000000', fontWeight: '600' }}>Multiple incidents:</strong> {hotspot.count}
+                    </p>
                   )}
                 </div>
               </Popup>
@@ -252,18 +262,25 @@ const HotspotMap = ({ hotspots = [], events = [] }) => {
         /* Popup styles */
         :global(.hotspot-popup) {
           font-family: var(--font-primary);
+          min-width: 200px;
         }
 
         :global(.hotspot-popup h4) {
-          margin: 0 0 8px 0;
-          font-size: 1.1rem;
-          color: #333;
+          margin: 0 0 8px 0 !important;
+          font-size: 1.1rem !important;
+          color: #000000 !important;
+          font-weight: 600 !important;
         }
 
         :global(.hotspot-popup p) {
-          margin: 4px 0;
-          font-size: 0.9rem;
-          color: #666;
+          margin: 4px 0 !important;
+          font-size: 0.9rem !important;
+          color: #000000 !important;
+        }
+
+        :global(.hotspot-popup p strong) {
+          color: #000000 !important;
+          font-weight: 600 !important;
         }
 
         :global(.severity-badge) {
@@ -343,13 +360,37 @@ const HotspotMap = ({ hotspots = [], events = [] }) => {
         }
 
         :global(.leaflet-popup-content-wrapper) {
-          background: rgba(255, 255, 255, 0.95);
-          border-radius: 8px;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+          background: rgba(255, 255, 255, 0.98) !important;
+          border-radius: 8px !important;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+          border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+
+        :global(.leaflet-popup-content) {
+          margin: 12px !important;
+          color: #000000 !important;
+        }
+
+        :global(.leaflet-popup-content-wrapper .hotspot-popup) {
+          color: #000000 !important;
+        }
+
+        :global(.leaflet-popup-content-wrapper .hotspot-popup *) {
+          color: inherit !important;
         }
 
         :global(.leaflet-popup-tip) {
-          background: rgba(255, 255, 255, 0.95);
+          background: rgba(255, 255, 255, 0.98) !important;
+        }
+
+        :global(.leaflet-popup-close-button) {
+          color: #666 !important;
+          font-size: 20px !important;
+          font-weight: 400 !important;
+        }
+
+        :global(.leaflet-popup-close-button:hover) {
+          color: #333 !important;
         }
 
         :global(.leaflet-control-zoom a) {
